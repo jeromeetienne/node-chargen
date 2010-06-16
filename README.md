@@ -1,4 +1,4 @@
-[chargen service](http://en.wikipedia.org/wiki/CHARGEN) implemented with node
+[Chargen service](http://en.wikipedia.org/wiki/CHARGEN) implemented with node
 
 To launch the server
 
