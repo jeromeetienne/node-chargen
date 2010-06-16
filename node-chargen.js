@@ -6,7 +6,10 @@ var http	= require('http');
 var pattern	= "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefg";
 
 http.createServer(function (request, response) {
-	response.writeHead(200, {'Content-Type': 'text/plain'});
+	response.writeHead(200, {
+		'Content-Type'		: 'text/plain',
+		'Transfer-Encoding'	: 'identity'		// to force a non-chunked response
+	});
 	var nb_line	= 0;
 	var stoploop	= false;
 	// to findout when the client closes the connection
@@ -26,7 +29,7 @@ http.createServer(function (request, response) {
 		// write the content to the response
 		response.write(content);
 		// defer the next iteration 
-		setTimeout(main_loop, 0);
+		setTimeout(main_loop, 10);
 	}
 	// start looping
 	main_loop();
