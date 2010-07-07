@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var sys		= require('sys');
-var http	= require('http');
+var http	= require('http'); 
 // pattern which gonna be displayed
 var pattern	= "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefg";
 
