@@ -43,7 +43,7 @@ var create	= function(opts){
 			// log to debug
 			if( verbose > 1 )	console.log("One line written");
 			// defer the next iteration 
-			setTimeout(main_loop, 10);
+			setTimeout(main_loop_get, 10);
 		}
 		// start looping
 		if( request.method == "GET" ){
