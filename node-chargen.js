@@ -21,14 +21,17 @@ var create	= function(opts){
 		request.connection.addListener('error', function(){
 			stoploop	= true;
 		});
+		var response_stop	= function(){
+			if( verbose > 0 )	console.log("Client disconnected");
+			response.end();			
+		}
 		/**
 		 * loop and deliver the usual chargen pattern until the end
 		*/
-		var main_loop	= function(){
+		var main_loop_get	= function(){
 			// if the client closes the connection, stop looping
 			if(stoploop){
-				if( verbose > 0 )	console.log("Client disconnected");
-				response.end();
+				response_stop();
 				return;
 			}
 			// compute the content to send
@@ -43,7 +46,11 @@ var create	= function(opts){
 			setTimeout(main_loop, 10);
 		}
 		// start looping
-		main_loop();
+		if( request.method == "GET" ){
+			main_loop_get();
+		}else if( request.method == "HEAD" ){
+			response_stop();
+		}
 	});
 	// return the just-created server
 	return server;
