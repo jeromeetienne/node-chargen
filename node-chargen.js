@@ -5,7 +5,8 @@ var http	= require('http');
 
 var create	= function(opts){
 	// alias opts for readability and default values
-	var verbose	= opts['verbose'] || 0;
+	var verbose	= opts.verbose 		|| 0;
+	var loop_delay	= opts.loop_delay	|| 5;
 	// pattern which gonna be displayed
 	var pattern	= "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefg";
 	// create the http server
@@ -43,7 +44,7 @@ var create	= function(opts){
 			// log to debug
 			if( verbose > 1 )	console.log("One line written");
 			// defer the next iteration 
-			setTimeout(main_loop_get, 1);
+			setTimeout(main_loop_get, loop_delay);
 		}
 		// start looping
 		if( request.method == "GET" ){
@@ -65,6 +66,7 @@ exports.create	= create;
 //////////////////////////////////////////////////////////////////////////////////
 if( process.argv[1] == __filename ){
 	var verbose	= 0;
+	var loop_delay	= null;
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//	parse cmdline								//
@@ -76,10 +78,14 @@ if( process.argv[1] == __filename ){
 		//sys.puts("key="+key+" val="+val);
 		if( key == "-v" || key == "--verbose" ){
 			verbose		+= 1;
+		}else if( key == "-l" || key == "--loop_delay" ){
+			loop_delay	= parseInt(val);
+			optind		+= 1;
 		}else if( key == "-h" || key == "--help" ){
-			sys.puts("usage: node-chargen [-v]");
+			sys.puts("usage: node-chargen [-v] [-l n_msec]");
 			sys.puts("");
 			sys.puts("-v|--verbose\tIncrease the verbose level (for debug).");
+			sys.puts("-l|--loop_delay\tSet the delay between each line (default to 5-msec).");
 			process.exit(0);
 		}else{
 			// if the option doesnt exist, consider it is the first non-option parameters
@@ -88,7 +94,8 @@ if( process.argv[1] == __filename ){
 	}
 
 	opts	= {
-		"verbose"	: verbose
+		"verbose"	: verbose,
+		"loop_delay"	: loop_delay
 	}
 	server	= create(opts);
 	server.listen(8124, "127.0.0.1");
