@@ -83,8 +83,11 @@ if( process.argv[1] == __filename ){
 		}else if( key == "-h" || key == "--help" ){
 			console.log("usage: node-chargen [-v] [-l n_msec]");
 			console.log("");
+			console.log("Provide a chargen-like on top of a webserver.");
+			console.log("");
 			console.log("-v|--verbose\tIncrease the verbose level (for debug).");
 			console.log("-l|--loop_delay\tSet the delay between each line (default to 5-msec).");
+			console.log("-h|--help\tDisplay the inline help.");
 			process.exit(0);
 		}else{
 			// if the option doesnt exist, consider it is the first non-option parameters
