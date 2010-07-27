@@ -81,6 +81,9 @@ var create	= function(ctor_opts){
 		});
 		server.listen(port, hostname);
 	}
+	var server_stop	= function(){
+		server.close();
+	}
 
 	//////////////////////////////////////////////////////////////////////////
 	//		run initialisation					//
@@ -90,7 +93,8 @@ var create	= function(ctor_opts){
 	// return the public properties
 	return {
 		destroy		: dtor,
-		client_url	: function(){ return "http://"+hostname+":"+port+"/"}
+		nb_clients	: function(){ return nb_cnx;				},
+		client_url	: function(){ return "http://"+hostname+":"+port+"/"	}
 	}
 }
 
