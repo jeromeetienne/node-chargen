@@ -138,10 +138,10 @@ if( process.argv[1] == __filename ){
 			console.log("Provide a chargen-like on top of a webserver.");
 			console.log("");
 			console.log("-a|--hostname host\tSet the address to listen on.");
-			console.log("-p|--port port\tSet the port to listen on.");
+			console.log("-p|--port port\t\tSet the port to listen on.");
 			console.log("-l|--loop_delay msec\tSet the delay between each line (default to 5-msec).");
-			console.log("-v|--verbose\tIncrease the verbose level (for debug).");
-			console.log("-h|--help\tDisplay the inline help.");
+			console.log("-v|--verbose\t\tIncrease the verbose level (for debug).");
+			console.log("-h|--help\t\tDisplay the inline help.");
 			process.exit(0);
 		}else{
 			// if the option doesnt exist, consider it is the first non-option parameters
