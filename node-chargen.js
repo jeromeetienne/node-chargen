@@ -121,7 +121,7 @@ if( process.argv[1] == __filename ){
 		var key	= process.argv[optind];
 		var val	= process.argv[optind+1];
 		//console.log("key="+key+" val="+val);
-		if( key == "-a" || key == "--hostname" ){
+		if( key == "-n" || key == "--hostname" ){
 			cmdline_opts.hostname	= val;
 			optind		+= 1;
 		}else if( key == "-p" || key == "--port" ){
@@ -137,7 +137,7 @@ if( process.argv[1] == __filename ){
 			console.log("");
 			console.log("Provide a chargen-like on top of a webserver.");
 			console.log("");
-			console.log("-a|--hostname host\tSet the address to listen on.");
+			console.log("-n|--hostname host\tSet the address to listen on.");
 			console.log("-p|--port port\t\tSet the port to listen on.");
 			console.log("-l|--loop_delay msec\tSet the delay between each line (default to 5-msec).");
 			console.log("-v|--verbose\t\tIncrease the verbose level (for debug).");
